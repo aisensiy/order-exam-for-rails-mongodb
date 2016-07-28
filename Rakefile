@@ -6,5 +6,5 @@ require File.expand_path('../config/application', __FILE__)
 Rails.application.load_tasks
 
 task :itest do
-  sh %{[ -d verify ] && cd verify && npm install && npm run test}
+  sh %{[ -d verify ] && cd verify && sh setup.sh && npm install && npm run test}
 end
