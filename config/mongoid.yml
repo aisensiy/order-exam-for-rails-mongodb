@@ -86,7 +86,7 @@ development:
 test:
   sessions:
     default:
-      uri: "mongodb://<%= ENV['MONGO_USERNAME'] || 'test' %>:<%= ENV['MONGO_PASSWORD'] || '' %>@<%= ENV['MONGO_HOST'] %>:<%= ENV['MONGO_PORT'] %>/<%= ENV['MONGO_NAME'] %>"
+      uri: "mongodb://<%= ENV['MONGODB_MONGODB_USER'] || 'test' %>:<%= ENV['MONGODB_MONGODB_PASS'] || '' %>@<%= ENV['MONGO_HOST'] %>:<%= ENV['MONGO_PORT'] %>/<%= ENV['MONGODB_MONGODB_DATABASE'] %>"
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
@@ -98,7 +98,7 @@ test:
 production:
   sessions:
     default:
-      uri: "mongodb://<%= ENV['MONGO_USERNAME'] || 'test' %>:<%= ENV['MONGO_PASSWORD'] || '' %>@<%= ENV['MONGO_HOST'] %>:<%= ENV['MONGO_PORT'] %>/<%= ENV['MONGO_NAME'] %>"
+      uri: "mongodb://<%= ENV['MONGODB_MONGODB_USER'] || 'test' %>:<%= ENV['MONGODB_MONGODB_PASS'] || '' %>@<%= ENV['MONGO_HOST'] %>:<%= ENV['MONGO_PORT'] %>/<%= ENV['MONGODB_MONGODB_DATABASE'] %>"
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
