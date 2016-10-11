@@ -52,15 +52,15 @@ trap on_exit HUP INT TERM QUIT ABRT EXIT
 CODEBASE_DIR=$CODEBASE
 HOST_IP=$(ip route|awk '/default/ { print $3 }')
 
-export MONGODB_MONGODB_USER=admin
-export MONGODB_MONGODB_PASS=mongo
-export MONGODB_MONGODB_DATABASE=testdb
+export MONGO_MONGODB_USER=admin
+export MONGO_MONGODB_PASS=mongo
+export MONGO_MONGODB_DATABASE=testdb
 
 echo
 puts_step "Launching baking services ..."
-MONGO_CONTAINER=$(docker run -d -P -e MONGODB_PASS=$MONGODB_MONGODB_PASS -e MONGODB_USER=$MONGODB_MONGODB_USER -e MONGODB_DATABASE=$MONGODB_MONGODB_DATABASE tutum/mongodb)
+MONGO_CONTAINER=$(docker run -d -P -e MONGODB_PASS=$MONGO_MONGODB_PASS -e MONGODB_USER=$MONGO_MONGODB_USER -e MONGODB_DATABASE=$MONGO_MONGODB_DATABASE tutum/mongodb)
 MONGO_PORT=$(docker inspect -f '{{(index (index .NetworkSettings.Ports "27017/tcp") 0).HostPort}}' ${MONGO_CONTAINER})
-until docker exec $MONGO_CONTAINER mongo $MONGODB_MONGODB_DATABASE --host 127.0.0.1 --port 27017 -u $MONGODB_MONGODB_USER -p $MONGODB_MONGODB_PASS --eval "ls()" &>/dev/null ; do
+until docker exec $MONGO_CONTAINER mongo $MONGO_MONGODB_DATABASE --host 127.0.0.1 --port 27017 -u $MONGO_MONGODB_USER -p $MONGO_MONGODB_PASS --eval "ls()" &>/dev/null ; do
     echo "...."
     sleep 1
 done
